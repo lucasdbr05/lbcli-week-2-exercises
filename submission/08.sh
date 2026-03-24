@@ -5,7 +5,7 @@ raw_tx="01000000000101c8b0928edebbec5e698d5f86d0474595d9f6a5b2e4e3772cd9d1005f23
 export LC_ALL=C 
 txid=$(bitcoin-cli -regtest decoderawtransaction "$raw_tx" | jq -r '.txid')
 input_sum=$(bitcoin-cli -regtest decoderawtransaction $raw_tx | jq '[.vout[].value] | add')
-echo "$input_sum - 0.2" | bc |  awk '{printf "%.8f\n", $0}'
+
 output_value=$(echo "$input_sum - 0.2" | bc | awk '{printf "%.8f\n", $0}')
 
 address="2MvLcssW49n9atmksjwg2ZCMsEMsoj3pzUP"
